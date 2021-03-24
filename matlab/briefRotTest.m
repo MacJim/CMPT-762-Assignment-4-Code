@@ -1,5 +1,5 @@
 % Step 4.2: BRIEF and Rotations
-% This script only contains BRIEF. Refer to the `surfRotTest.m` script for SURF.
+% This script only uses BRIEF. Refer to the `surfRotTest.m` script for SURF.
 
 % MARK: Read the image and convert to grayscale, if necessary
 img = imread('../data/cv_cover.jpg');
@@ -18,14 +18,14 @@ for i = 0:36
     % Match features.
     [locs1, locs2] = matchPics(img, rotated_img);
     
+    % Update histogram count.
+    briefMatches = [briefMatches size(locs1, 1)];
+    
     % Plot feature matching result at three different orientations.
     if ((i == 3) || (i == 6) || (i == 9))
         figure('Name', sprintf('BRIEF: Rotation: %d Degrees', i * 10), 'NumberTitle', 'off');
         showMatchedFeatures(img, rotated_img, locs1, locs2, 'montage');
     end
-    
-    % Update histogram count.
-    briefMatches = [briefMatches size(locs1, 1)];
 end
 
 % Display histogram.
