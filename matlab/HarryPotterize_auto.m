@@ -1,4 +1,8 @@
-%Q2.2.4
+% Step 4.6. HarryPotterizing a Book (2 pts)
+% Calls the `compositeH` function.
+%
+% Note: I think warping should be done in the `compositeH` function.
+
 clear all;
 close all;
 
@@ -10,14 +14,16 @@ hp_img = imread('../data/hp_cover.jpg');
 [locs1, locs2] = matchPics(cv_img, desk_img);
 
 %% Compute homography using RANSAC
-[bestH2to1, ~] = computeH_ransac(locs1, locs2);
+[bestH2to1, ~, ~] = computeH_ransac(locs1, locs2);
 
 %% Scale harry potter image to template size
 % Why is this is important?
 scaled_hp_img = imresize(hp_img, [size(cv_img,1) size(cv_img,2)]);
 
 %% Display warped image.
+figure('Name', 'Warped Image', 'NumberTitle', 'off');
 imshow(warpH(scaled_hp_img, inv(bestH2to1), size(desk_img)));
 
 %% Display composite image
-imshow(compositeH(inv(bestH2to1), scaled_hp_img, desk_img));
+figure('Name', 'Composite Image', 'NumberTitle', 'off');
+imshow(compositeH(bestH2to1, scaled_hp_img, desk_img));    % Don't use `inv` here.
