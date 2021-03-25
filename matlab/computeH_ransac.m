@@ -8,7 +8,7 @@ function [bestH2to1, inliers, bestIdx] = computeH_ransac(locs1, locs2)
 % inliers: A vector of length N with a 1 at those matches that are part of the consensus set, and 0 elsewhere.
 % bestIdx: Indices of points used to compute `bestH2to1`.
 
-inlierThreshold = 10;
+inlierThreshold = 1;
 
 bestH2to1 = [];
 inliers = [];
