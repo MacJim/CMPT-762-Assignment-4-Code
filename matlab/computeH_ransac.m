@@ -16,7 +16,7 @@ bestIdx = [];
 
 maxInliersCount = 0;
 
-for i = 1:1000
+for i = 1:3000
     % Choose 4 point pairs.
     idx = randperm(size(locs1, 1), 4);
 

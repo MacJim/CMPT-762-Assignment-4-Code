@@ -18,6 +18,17 @@ for i = 1:length(pandaVid)
     % [bestH2to1, ~, ~] = computeH_ransac(locs1, locs2);
     try
         [bestH2to1, ~, ~] = computeH_ransac(locs1, locs2);
+
+        % Remove outlier frames.
+        if exist('prevH2to1', 'var')
+            difference = bestH2to1 - prevH2to1;
+            % disp(norm(difference(:)));
+            if (norm(difference(:)) > 60)
+                disp('Large!');
+                bestH2to1 = prevH2to1;
+            end
+        end
+
         prevH2to1 = bestH2to1;
     catch
         % In case there aren't enough matching points.
