@@ -5,8 +5,8 @@ function [locs1, locs2] = matchPics(I1, I2)
 % I1, I2: 2 images
 % loc1, loc2: N x 2 matrices of x and y coordinates of the matched point pairs
 
-originalI1 = I1
-originalI2 = I2
+originalI1 = I1;
+originalI2 = I2;
 
 % MARK: Convert images to grayscale, if necessary
 if (ndims(I1) == 3)
